@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © Magmodules.eu. All rights reserved.
+ * Copyright Â© Magmodules.eu. All rights reserved.
  * See COPYING.txt for license details.
  */
 declare(strict_types=1);
@@ -191,7 +191,12 @@ class AddressData
      */
     private function getRegionId(string $code, string $countryId)
     {
-        $region = $this->regionFactory->create();
-        return $region->loadByCode($code, $countryId)->getId();
+        if (isset($code) && strlen($code) == 2) {
+            $region = $this->regionFactory->create();
+            return $region->loadByCode($code, $countryId)->getId();
+        }
+        else {
+            return '';
+        }
     }
 }
